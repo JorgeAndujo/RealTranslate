@@ -1,24 +1,137 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import colors from '../utils/colors';
+import { useState } from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function HomeScreen(props) {
-  return (
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
+  const [enteredText, setEnteredText] = useState('');
+  const [resultText, setResultText] = useState('');
 
-        <Button
-          title="Click me" onPress={() => {
-            props.navigation.navigate("settings")
-          }}
-        />
+  return (
+    <View style={styles.container}>
+      <View style={styles.languageContainer}>
+        <TouchableOpacity
+          style={styles.languageOption}
+          onPress={() => console.log('Pressed')}
+        >
+          <Text style={styles.languageOptionText}>English</Text>
+        </TouchableOpacity>
+
+        <View style={styles.arrowContainer}>
+          <FontAwesome5 name='arrow-right' size={24} color={colors.lightGrey} />
+        </View>
+
+        <TouchableOpacity
+          style={styles.languageOption}
+          onPress={() => console.log('Pressed')}
+        >
+          <Text style={styles.languageOptionText}>French</Text>
+        </TouchableOpacity>
       </View>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder='Ingrese el texto a traducir'
+          multiline
+          style={styles.textInput}
+          onChangeText={(text) => setEnteredText(text)}
+        />
+
+        <TouchableOpacity
+          style={styles.iconContainer}
+          disabled={enteredText === ''}
+        >
+          <FontAwesome5
+            name='arrow-circle-right'
+            size={24}
+            color={enteredText !== '' ? colors.primary : colors.primaryDisabled}
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.resultContainer}>
+        <Text style={styles.resultText}>{resultText}</Text>
+
+        <TouchableOpacity
+          style={styles.iconContainer}
+          disabled={resultText === ''}
+        >
+          <MaterialIcons
+            name='content-copy'
+            size={24}
+            color={resultText !== '' ? colors.textColor : colors.textColorDisabled}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+  },
+  languageContainer: {
+    flexDirection: 'row',
+    borderBottomColor: colors.lightGrey,
+    borderBottomWidth: 1,
+  },
+  languageOption: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 15,
+  },
+  arrowContainer: {
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  languageOptionText: {
+    color: colors.primary,
+    fontFamily: 'regular',
+    letterSpacing: 0.3,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    borderBottomColor: colors.lightGrey,
+    borderBottomWidth: 1,
+  },
+  textInput: {
+    flex: 1,
+    marginTop: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    fontFamily: 'regular',
+    letterSpacing: 0.3,
+    height: 90,
+    color: colors.textColor,
+  },
+  iconContainer: {
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  resultContainer: {
+    borderBottomColor: colors.lightGrey,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    height: 90,
+    paddingVertical: 15
+  },
+  resultText: {
+    fontFamily: 'regular',
+    letterSpacing: 0.3,
+    color: colors.primary,
+    flex: 1,
+    marginHorizontal: 20
   },
 });
