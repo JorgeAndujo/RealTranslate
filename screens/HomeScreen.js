@@ -6,6 +6,7 @@ import {
   TextInput,
   ActivityIndicator,
   FlatList,
+  Alert,
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import colors from "../utils/colors";
@@ -104,7 +105,11 @@ export default function HomeScreen(props) {
   }, [enteredText, languageFrom, languageTo, dispatch]);
 
   const copyToClipboard = useCallback(async () => {
-    await Clipboard.setStringAsync(resultText);
+    await Clipboard.setStringAsync(resultText).then(() => {
+      Alert.alert("Exito", "La traducción se ha copiado al portapapeles");
+    }).catch(() => {
+      Alert.alert("Fallo", "No se ha podido copiar el resultado de la traducción al portapapeles");
+    });
   }, [resultText]);
 
   return (
