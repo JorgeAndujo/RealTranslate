@@ -14,11 +14,10 @@ node:20.9.0:
   only:
     - merge_requests
   script:
-    - npx tsc
     - expo-cli doctor
 
 bump-version:
-  image: node:18-alpine
+  image: node:20.9.0
   stage: release
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_AUTHOR !~ /semantic-release-bot.*/)
