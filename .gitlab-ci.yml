@@ -1,0 +1,47 @@
+stages:
+  - test
+  - release
+
+before_script:
+  - npm install -g expo-cli
+  - npm install
+
+node:16:
+  image: node:16-alpine
+  stage: test
+  allow_failure: true
+  only:
+    - merge_requests
+  script:
+    - npx tsc
+    - expo-cli doctor
+
+bump-version:
+  image: node:18-alpine
+  stage: release
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_AUTHOR !~ /semantic-release-bot.*/)
+  script:
+    - "which ssh-agent || ( apk --update add openssh-client git )"
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-add <(echo "$CI_SSH_KEY")
+    - npx semantic-release
+
+publish:
+  image: node:16-alpine
+  stage: release
+  environment:
+    name: production
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG =~ /^v.*$/
+  before_script:
+    - apk --update add git
+    - npm install -g expo-cli eas-cli
+    - npm install
+  script:
+    - eas build --platform android --profile production --non-interactive --auto-submit
