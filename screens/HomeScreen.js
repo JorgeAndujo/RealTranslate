@@ -101,6 +101,7 @@ export default function HomeScreen(props) {
       console.log(error);
     } finally {
       setLoadingInternal(false);
+      console.log("hola");
     }
   }, [enteredText, languageFrom, languageTo, dispatch]);
 
