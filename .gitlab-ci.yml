@@ -6,8 +6,8 @@ before_script:
   - npm install -g expo-cli
   - npm install
 
-node:16:
-  image: node:16-alpine
+node:20.9.0:
+  image: node:20.9.0
   stage: test
   allow_failure: true
   only:
@@ -30,7 +30,7 @@ bump-version:
     - npx semantic-release
 
 publish:
-  image: node:16-alpine
+  image: node:20.9.0
   stage: release
   environment:
     name: production
