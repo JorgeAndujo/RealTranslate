@@ -14,7 +14,7 @@ node:20.9.0:
   only:
     - merge_requests
   script:
-    - expo-cli doctor
+    - npx expo-doctor
 
 bump-version:
   image: node:20.9.0
