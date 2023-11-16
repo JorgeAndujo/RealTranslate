@@ -5,6 +5,7 @@ stages:
 before_script:
   - npm install -g expo-cli
   - npm install
+  - npm install typescript
 
 node:20.9.0:
   image: node:20.9.0
