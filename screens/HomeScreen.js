@@ -101,7 +101,7 @@ export default function HomeScreen(props) {
       console.log(error);
     } finally {
       setLoadingInternal(false);
-      console.log("ei");
+      console.log("como");
     }
   }, [enteredText, languageFrom, languageTo, dispatch]);
 
