@@ -17,3 +17,6 @@ plugins:
       message: "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
   - - "@semantic-release/gitlab"
     - gitlabUrl: https://gitlab.com/Andujo24/realtranslate
+branches:
+  - name: "main"
+    channel: "main"
