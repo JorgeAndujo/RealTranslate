@@ -34,8 +34,7 @@ deploy_to_github:
   image: node:20.9.0
   stage: deploy
   script:
-    - export REPO_URL="https://'$GITHUB_USER':'$GITHUB_TOKEN'@github.com/'$GITHUB_USER'/RealTranslate.git"
-    - git clone REPO_URL
+    - git clone "https://'$GITHUB_USER':'$GITHUB_TOKEN'@github.com/'$GITHUB_USER'/RealTranslate.git"
     - git config user.email "jorgeluisandujo@gmail.com"
     - git config user.name "JorgeAndujo"
     - cd RealTranslate
@@ -43,7 +42,7 @@ deploy_to_github:
     - echo "User; '$GITHUB_USER' Fecha; $(date)" > gitlab-deploy-info.txt
     - git add gitlab-deploy-info.txt
     - git commit -m "GitLab Deploy $(date)"
-    - git push REPO_URL master
+    - git push "https://'$GITHUB_USER':'$GITHUB_TOKEN'@github.com/'$GITHUB_USER'/RealTranslate.git" master
 
 publish:
   image: node:20.9.0
