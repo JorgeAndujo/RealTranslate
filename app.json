@@ -3,6 +3,7 @@
     "name": "RealTranslate",
     "slug": "RealTranslate",
     "version": "1.0.1",
+    "owner": "andujo24",
     "orientation": "portrait",
     "icon": "./assets/rticon.png",
     "userInterfaceStyle": "light",
@@ -15,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andujo24.RealTranslate"
     },
     "android": {
       "adaptiveIcon": {
