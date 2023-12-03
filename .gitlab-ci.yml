@@ -16,6 +16,8 @@ node:20.9.0:
     - branches
   script:
     - npx expo-doctor
+    - echo "GITHUB_USER- ${GITHUB_USER}"
+    - echo "GITHUB_TOKEN- ${GITHUB_TOKEN}"
 
 bump-version:
   image: node:20.9.0
@@ -36,8 +38,8 @@ deploy_to_github:
   image: node:20.9.0
   stage: deploy
   script:
-    - echo "GITHUB_USER- $GITHUB_USER"
-    - echo "GITHUB_TOKEN- $GITHUB_TOKEN"
+    - echo "GITHUB_USER- ${GITHUB_USER}"
+    - echo "GITHUB_TOKEN- ${GITHUB_TOKEN}"
 
 publish:
   image: node:20.9.0
