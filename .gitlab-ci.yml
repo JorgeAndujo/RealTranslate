@@ -34,7 +34,7 @@ deploy_to_github:
   image: node:20.9.0
   stage: deploy
   script:
-    - git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/$GITHUB_USER/RealTranslate.git
+    - git clone https://JorgeAndujo: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@github.com/JorgeAndujo/RealTranslate.git
     - cd RealTranslate
     - touch gitlab-deploy-info.txt
     - echo "User; $GITHUB_USER Fecha; $(date)" > gitlab-deploy-info.txt
