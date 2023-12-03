@@ -34,9 +34,9 @@ deploy_to_github:
   image: node:20.9.0
   stage: deploy
   script:
+    - git config --global user.email "jorgeluisandujo@gmail.com"
+    - git config --global user.name "JorgeAndujo"
     - git clone "https://JorgeAndujo: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@github.com/JorgeAndujo/RealTranslate.git"
-    - git config user.email "jorgeluisandujo@gmail.com"
-    - git config user.name "JorgeAndujo"
     - cd RealTranslate
     - touch gitlab-deploy-info.txt
     - echo "User; '$GITHUB_USER' Fecha; $(date)" > gitlab-deploy-info.txt
