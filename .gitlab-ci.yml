@@ -4,7 +4,7 @@ stages:
   - deploy
 
 before_script:
-  - echo "GITHUB_USER- '$GITHUB_USER'"
+  - echo "GITHUB_USERONE- '$GITHUB_USER'"
   - echo "GITHUB_TOKEN- '$GITHUB_TOKEN'"
   - npm install -g expo-cli
   - npm install
