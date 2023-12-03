@@ -23,6 +23,8 @@ bump-version:
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_AUTHOR !~ /semantic-release-bot.*/)
   script:
+    - echo "GITHUB_USER- $GITHUB_USER"
+    - echo "GITHUB_TOKEN- $GITHUB_TOKEN"
     - "which ssh-agent || ( apk --update add openssh-client git )"
     - mkdir -p ~/.ssh
     - eval $(ssh-agent -s)
@@ -34,13 +36,8 @@ deploy_to_github:
   image: node:20.9.0
   stage: deploy
   script:
-    - git clone https://JorgeAndujo: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@github.com/JorgeAndujo/RealTranslate.git
-    - cd RealTranslate
-    - touch gitlab-deploy-info.txt
-    - echo "User; $GITHUB_USER Fecha; $(date)" > gitlab-deploy-info.txt
-    - git add gitlab-deploy-info.txt
-    - git commit -m "GitLab Deploy $(date)"
-    - git push origin master
+    - echo "GITHUB_USER- $GITHUB_USER"
+    - echo "GITHUB_TOKEN- $GITHUB_TOKEN"
 
 publish:
   image: node:20.9.0
