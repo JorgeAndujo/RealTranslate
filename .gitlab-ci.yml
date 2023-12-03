@@ -34,13 +34,13 @@ deploy_to_github:
   image: node:20.9.0
   stage: deploy
   script:
-    -git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/RealTranslate.git
-    -cd RealTranslate
-    -touch gitlab-deploy-info.txt
-    -echo "User; $GITHUB_USER Fecha; $(date)" > gitlab-deploy-info.txt
-    -git add gitlab-deploy-info.txt
-    -git commit -m "GitLab Deploy $(date)"
-    -git push origin master
+    - git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/RealTranslate.git
+    - cd RealTranslate
+    - touch gitlab-deploy-info.txt
+    - echo "User; $GITHUB_USER Fecha; $(date)" > gitlab-deploy-info.txt
+    - git add gitlab-deploy-info.txt
+    - git commit -m "GitLab Deploy $(date)"
+    - git push origin master
 
 publish:
   image: node:20.9.0
